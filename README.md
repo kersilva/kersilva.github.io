@@ -1,62 +1,69 @@
-# portfolio — Kelwin Felipe Rocha Silva
+# Portfólio — Kelwin Felipe Rocha Silva
 
-Portfólio pessoal reconstruído do zero, mantendo todas as informações da versão anterior.
+Portfólio acadêmico e profissional de Kelwin Felipe Rocha Silva. O site apresenta formação, competências, certificados e projetos, com páginas individuais para os estudos de caso.
 
-## Stack
+## Tecnologias
 
-- **Node + Vite** — build de SPA estática
-- **React 19 + TypeScript**
-- **TanStack Router** — rotas tipadas (`/`, `/projetos`, `/projetos/$slug`)
-- **Tailwind CSS 4** (build estático, via `@tailwindcss/vite`) + tokens de tema claro/escuro
-- **motion** — animações (reveals, menu fullscreen, hovers suaves)
-- **lucide-react** + ícones de marca em SVG próprio
-- Fontes self-hosted: Alpino (Fontshare, sans-serif) e JetBrains Mono
-- **shadcn/ui** — `components.json` (estilo new-york) + `Button`, `Badge`, `Input`, `Separator` em `src/components/ui/` com `cn()` (`clsx` + `tailwind-merge`)
-- **Magic UI** — `WordRotate` (navbar), `AnimatedThemeToggler` (navbar, View Transitions) e `Marquee` (competências) em `src/components/magicui/`
-- **Motion Primitives** — `FadeInUp`, `AnimatedUnderlineLink`, `Spotlight`/`SpotlightBorder` (bordas azuis que seguem o cursor) e `Cursor`/`CursorGlobal` (cursor bolinha que cresce sobre elementos pointer) em `src/components/motion-primitives/`
+- React 19, TypeScript e Vite
+- TanStack Router para navegação entre a página inicial, a lista de projetos e os detalhes de cada projeto
+- Tailwind CSS 4
+- Motion para animações e componentes interativos
+- Magic UI e Motion Primitives para efeitos de texto, imagem, cursor e diálogos
+- Lucide React e ícones SVG próprios
+- Fontes Inter, Alpino e JetBrains Mono
+
+## Conteúdo do site
+
+- **Início:** apresentação, foto, formação, competências, certificados e até quatro projetos em telas menores ou três em telas grandes
+- **Projetos:** lista completa com filtros por tipo
+- **Detalhes do projeto:** contexto, problema, solução, contribuições, resultados, competências, tecnologias e links dos repositórios
+- **Certificados:** imagens abertas em diálogo animado
+- **Preferências:** idioma português/inglês e tema claro/escuro
 
 ## Estrutura
 
-```
+```text
 src/
-  data/portfolio.ts     ← TODO o conteúdo editável (pessoa, projetos, skills, formação)
-  i18n/                 ← traduções PT/EN + context de idioma (persistido)
-  tema/                 ← context de tema claro/escuro (persistido)
+  data/portfolio.ts                 # pessoa, projetos, competências, formação e certificados
+  i18n/                             # textos em português e inglês
+  tema/                             # estado do tema claro/escuro
   components/
-    layout/             ← Navbar, MenuFullscreen, Footer, Secao (trilhos 1px)
-    projetos/           ← CardProjeto (capa colorida), Filtros (com contadores)
-    ui/                 ← shadcn (Button, Badge, Input, Separator) + Marcas (SVG GitHub/LinkedIn)
-    magicui/            ← WordRotate, AnimatedThemeToggler, Marquee
-    motion-primitives/  ← FadeInUp, AnimatedUnderlineLink, Spotlight, SpotlightBorder, Cursor, CursorGlobal
-  pages/                ← Home (hero + sobre + competências + projetos), Projetos, ProjetoDetail
+    layout/                         # navegação, menu, rodapé e seções
+    projetos/                       # cartões, filtros e certificados
+    ui/                              # componentes de interface e marcas SVG
+    magicui/                         # componentes Magic UI usados no site
+    motion-primitives/               # animações e componentes Motion Primitives
+  pages/                             # página inicial, projetos e detalhes
+public/
+  img/avatar/                        # imagens do hero
+  img/certificados/                  # certificados
+  img/projetos/                      # capas e capturas de tela dos projetos
 ```
 
-## Comandos
+## Desenvolvimento
+
+Requer Node.js e npm.
 
 ```bash
 npm install
-npm run dev      # desenvolvimento
-npm run build    # build de produção em dist/
-npm run preview  # servir o build localmente
+npm run dev      # inicia o servidor local
+npm run build    # verifica os tipos e gera o site em dist/
+npm run preview  # visualiza localmente o build de produção
+npm run lint     # executa o Oxlint
 ```
 
-## Deploy — GitHub Pages
+## Publicação no GitHub Pages
 
-1. O workflow `.github/workflows/deploy.yml` faz build e publica a cada push na `main`.
-2. No repositório: **Settings → Pages → Source = "GitHub Actions"**.
-3. O `base` do Vite está em `vite.config.ts` (`/portfolio/`). Se o repositório
-   se chamar diferente, ajuste ali; se for user site (`seuuser.github.io`), use `"/"`.
-4. Refresh em rotas internas funciona pelo `404.html` (SPA fallback clássico
-   do GitHub Pages) — o roteador reconstrói a URL no `src/router.tsx`.
+O workflow em `.github/workflows/deploy.yml` publica após um push para `main` ou por execução manual. No repositório, o GitHub Pages deve usar **Settings → Pages → Source → GitHub Actions**. Como este projeto está no repositório de usuário `kersilva.github.io`, o Vite usa `base: "/"` e o workflow instala, compila e publica a partir da raiz.
 
-## Onde editar o conteúdo
+## Onde editar
 
-| O que mudar | Onde |
+| Conteúdo | Arquivo |
 |---|---|
-| Nome, e-mail, GitHub, LinkedIn, currículo | `src/data/portfolio.ts` → `pessoa` |
-| Projetos (resumo, stack, estudo de caso, capa) | `src/data/portfolio.ts` → `projetos` |
-| Skills (5 categorias, 23 tecnologias) | `src/data/portfolio.ts` → `skills` |
-| Palavras rotativas da navbar | `src/components/layout/Navbar.tsx` → `palavras` |
-| Textos PT/EN | `src/i18n/translations.ts` |
-| Cores (temas claro/escuro, azul de destaque) | `src/index.css` → `@theme` |
-| Período da formação | `src/data/portfolio.ts` → `formacao` (campo `periodo`) |
+| Nome, contatos, currículo e links | `src/data/portfolio.ts` — `pessoa` |
+| Projetos e estudos de caso | `src/data/portfolio.ts` — `projetos` |
+| Tecnologias e categorias | `src/data/portfolio.ts` — `skills` |
+| Formação | `src/data/portfolio.ts` — `formacao` |
+| Certificados | `src/data/portfolio.ts` — `certificados` |
+| Textos em português e inglês | `src/i18n/translations.ts` e os textos bilíngues em `src/data/portfolio.ts` |
+| Cores e estilos globais | `src/index.css` |
