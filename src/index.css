@@ -1,0 +1,239 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource/jetbrains-mono";
+
+/* Alpino self-hosted (Fontshare) — toda a tipografia é sans-serif */
+@font-face {
+  font-family: "Alpino";
+  src: url("./fonts/Alpino-Variable.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
+   DESIGN SYSTEM — portfólio Kelwin
+   Estrutura: Alexis (trilhos verticais contínuos 1px,
+   divisórias horizontais APENAS entre os trilhos)
+   Cor/interação: VM (acento azul, hover borda+ícone azul)
+   Componentes: shadcn/ui + Motion Primitives + Magic UI
+   ============================================================ */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* ---- cores (tokens do portfólio atual + acento azul VM) ---- */
+  --color-fundo: #050506;
+  --color-superficie: #1c1917;
+  --color-borda: #292524;
+  --color-texto: #f5f5f4;
+  --color-texto-muted: #a8a29e;
+  --color-accent: #60a5fa;
+  --color-accent-suave: rgb(96 165 250 / 0.16);
+  --color-accent-forte: #2563eb;
+
+  /* tema claro */
+  --color-fundo--light: #f5f5f4;
+  --color-superficie--light: #ffffff;
+  --color-borda--light: #d6d3d1;
+  --color-texto--light: #1c1917;
+  --color-texto-muted--light: #78716c;
+  --color-accent--light: #2563eb;
+  --color-accent-suave--light: rgb(37 99 235 / 0.12);
+  --color-accent-forte--light: #1d4ed8;
+
+  /* ---- tipografia: sans + mono, zero serif ---- */
+  --font-sans: "Alpino", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Alpino", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+  /* ---- animação padrão (hover suave do VM) ---- */
+  --ease-suave: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ---- layout do dossiê ---- */
+  --container-dossie: 72rem;
+
+  /* ---- Magic UI: Marquee ---- */
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee-vertical: marquee-vertical 40s linear infinite;
+  @keyframes marquee {
+    to {
+      transform: translateX(calc(-100% - 1.5rem));
+    }
+  }
+  @keyframes marquee-vertical {
+    to {
+      transform: translateY(calc(-100% - 1.5rem));
+    }
+  }
+}
+
+/* tokens semânticos por tema — usados como bg-fundo, text-texto, etc. */
+@layer base {
+  :root {
+    --fundo: var(--color-fundo--light);
+    --superficie: var(--color-superficie--light);
+    --borda: var(--color-borda--light);
+    --texto: var(--color-texto--light);
+    --texto-muted: var(--color-texto-muted--light);
+    --accent: var(--color-accent--light);
+    --accent-suave: var(--color-accent-suave--light);
+    --accent-forte: var(--color-accent-forte--light);
+  }
+  .dark {
+    --fundo: var(--color-fundo);
+    --superficie: var(--color-superficie);
+    --borda: var(--color-borda);
+    --texto: var(--color-texto);
+    --texto-muted: var(--color-texto-muted);
+    --accent: var(--color-accent);
+    --accent-suave: var(--color-accent-suave);
+    --accent-forte: var(--color-accent-forte);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--fundo);
+    color: var(--texto);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background-color: var(--accent-suave);
+    color: var(--accent-forte);
+  }
+
+  /* ============================================================
+     TRILHOS VERTICAIS (Alexis): linhas de 1px contínuas em toda a
+     altura da viewport, alinhadas às bordas do container central.
+     Única implementação no body — sem espaços entre seções.
+     ============================================================ */
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: var(--borda);
+    z-index: 0;
+    pointer-events: none;
+  }
+  body::before {
+    left: max(0px, calc(50% - var(--container-dossie) / 2));
+  }
+  body::after {
+    right: max(0px, calc(50% - var(--container-dossie) / 2));
+  }
+}
+
+/* ============================================================
+   UTILITÁRIOS
+   ============================================================ */
+
+@layer utilities {
+  /* container do dossiê — SEM bordas: as verticais são do body e as
+     horizontais ficam a cargo de Separator/linha-secao, sempre dentro
+     dos trilhos */
+  .container-dossie {
+    @apply mx-auto w-full max-w-[var(--container-dossie)] px-5 sm:px-8 lg:px-12;
+  }
+
+  /* rótulo de seção numerado em monospace (01. NAVEGAÇÃO) */
+  .label-mono {
+    @apply font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--texto-muted)];
+  }
+
+  /* ---- padrão de hover VM: borda azul + fundo do ícone azul ---- */
+  .hover-vm {
+    @apply border border-[var(--borda)] duration-200;
+    transition-property: border-color, background-color, color, box-shadow;
+    transition-timing-function: var(--ease-suave);
+  }
+  .hover-vm:hover,
+  .hover-vm:focus-visible {
+    @apply border-[var(--accent)] outline-none;
+  }
+  .icon-tile {
+    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[var(--borda)] text-[var(--texto-muted)] transition-all duration-200;
+    transition-timing-function: var(--ease-suave);
+  }
+  .hover-vm:hover .icon-tile,
+  .hover-vm:focus-visible .icon-tile {
+    @apply border-transparent bg-[var(--accent)] text-white;
+  }
+  /* variante quando hover-vm e icon-tile estão no MESMO elemento
+     (ex.: botão de GitHub nos cards — hover só no botão) */
+  .hover-vm.icon-tile:hover,
+  .hover-vm.icon-tile:focus-visible {
+    @apply border-transparent bg-[var(--accent)] text-white;
+  }
+
+  /* foco visível unificado (paridade teclado/mouse) */
+  .focus-vm {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--fundo)];
+  }
+
+  /* logos de tecnologia: cinza escuro no tema claro e claro no tema escuro */
+  .tech-logo {
+    filter: brightness(0) saturate(100%) invert(32%);
+  }
+  .dark .tech-logo {
+    filter: brightness(0) saturate(100%) invert(88%);
+  }
+}
+
+/* animação de pulso do selo de disponibilidade */
+@keyframes pulso-disponivel {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.8);
+  }
+}
+.pulso-disponivel {
+  animation: pulso-disponivel 2s var(--ease-suave) infinite;
+}
+
+/* ============================================================
+   AnimatedThemeToggler (Magic UI): View Transition limpa —
+   sem animação padrão, o círculo animado controla a revelação
+   ============================================================ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* ============================================================
+   Cursor bolinha (Motion Primitives): esconde o cursor nativo
+   apenas em ponteiros finos (desktop); campos de texto mantêm
+   o I-beam para usabilidade
+   ============================================================ */
+@media (pointer: fine) {
+  html.cursor-bolinha,
+  html.cursor-bolinha * {
+    cursor: none !important;
+  }
+  html.cursor-bolinha input,
+  html.cursor-bolinha textarea,
+  html.cursor-bolinha select {
+    cursor: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

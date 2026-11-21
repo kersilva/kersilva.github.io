@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- SEO + Open Graph (recomendação "alta" do relatório de análise) -->
+    <title>Kelwin Felipe Rocha Silva — Desenvolvedor Web Full-Stack</title>
+    <meta
+      name="description"
+      content="Portfólio de Kelwin Felipe Rocha Silva, estudante de Desenvolvimento de Software Multiplataforma (DSM) na Fatec, construindo aplicações web full-stack. Disponível para projetos."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Kelwin Felipe Rocha Silva — Desenvolvedor Web Full-Stack" />
+    <meta
+      property="og:description"
+      content="Portfólio de Kelwin Felipe Rocha Silva, estudante de DSM na Fatec, construindo aplicações web full-stack. Disponível para projetos."
+    />
+    <meta property="og:image" content="/portfolio/og-cover.png" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <!-- aplica o tema salvo ANTES da primeira pintura (sem flash) -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("kelwin-theme");
+          var dark = t ? t === "dark" : true; // escuro é o padrão
+          document.documentElement.classList.toggle("dark", dark);
+        } catch (e) {}
+      })();
+    </script>
+    <!-- aplica o idioma salvo antes da primeira pintura (sem flash de idioma) -->
+    <script>
+      (function () {
+        try {
+          var lang = localStorage.getItem("kelwin-lang") || "pt";
+          document.documentElement.setAttribute("lang", lang === "pt" ? "pt-BR" : "en");
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

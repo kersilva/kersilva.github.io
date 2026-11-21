@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      SPA fallback para GitHub Pages: o servidor não reescreve /projetos/x,
+      então o 404.html converte a URL em querystring e devolve ao index.html,
+      que reconstrói a rota no lado do cliente (TanStack Router history mode).
+      Copiado automaticamente do dist/index.html pelo workflow de deploy.
+    -->
+    <script>
+      (function () {
+        var l = window.location;
+        var caminho = l.pathname.replace(/\/index\.html$/, "").replace(/\/$/, "");
+        l.replace(
+          l.origin + caminho + "/index.html" + "?/?" + l.pathname + l.search + l.hash
+        );
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirecionando…</p>
+  </body>
+</html>

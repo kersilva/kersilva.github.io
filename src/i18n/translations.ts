@@ -1,0 +1,163 @@
+/* ============================================================
+   i18n PT/EN — paridade completa de chaves (38 do original + novas)
+   Idioma persistido em localStorage ("kelwin-lang"), padrão PT.
+   ============================================================ */
+
+export type Lang = "pt" | "en";
+
+export const translations = {
+  pt: {
+    // navegação
+    "nav.inicio": "início",
+    "nav.projetos": "projetos",
+    "nav.sobre": "sobre",
+    "nav.cv": "currículo",
+    // hero
+    "hero.saudacao": "olá, eu sou",
+    "hero.disponivel": "disponível para projetos",
+    "hero.verProjetos": "ver projetos",
+    "hero.verCv": "ver currículo",
+    // filtros
+    "filtros.todos": "todos",
+    // cards de projeto
+    "projeto.tipo.projeto_academico": "projeto acadêmico",
+    "projeto.tipo.profissional": "projeto profissional",
+    "projeto.tipo.pessoal": "projeto pessoal",
+    "projeto.tipo.atividade_academica": "atividade acadêmica",
+    "projeto.verGithub": "ver github",
+    "projeto.verDetalhe": "ver detalhes",
+    "projeto.verTodos": "ver todos os projetos",
+    "projeto.pessoas": "pessoas",
+    "projeto.instituicao": "instituição",
+    "projeto.periodo": "período",
+    "projeto.parceiro": "parceiro / cliente",
+    "projeto.repositorioOriginal": "repositório original",
+    "projeto.repositorioPessoal": "cópia pessoal",
+    "projeto.contribuicoes": "minhas contribuições",
+    "projeto.hardSkills": "competências técnicas",
+    "projeto.softSkills": "competências comportamentais",
+    "projeto.nivel.basico": "básico",
+    "projeto.nivel.autonomo": "autônomo",
+    "projeto.nivel.fluente": "fluente",
+    // página de projeto (template estudo de caso)
+    "projeto.voltar": "← todos os projetos",
+    "projeto.codeSource": "código fonte",
+    "projeto.demo": "demonstração",
+    "projeto.contexto": "problema e solução",
+    "projeto.problema": "problema",
+    "projeto.solucao": "solução",
+    "projeto.resultados": "resultados",
+    "projeto.stack": "stack utilizada",
+    "projeto.anterior": "anterior",
+    "projeto.proximo": "próximo",
+    // sobre
+    "sobre.titulo": "sobre mim",
+    "sobre.bio1": "sou Kelwin Felipe Rocha Silva, estudante de Desenvolvimento de Software Multiplataforma (DSM) na FATEC São José dos Campos – Prof. Jessen Vidal. Gosto de construir projetos, explorar novas tecnologias e transformar ideias em aplicações reais. Também tenho interesse em entender como produtos de software são concebidos, desenvolvidos e evoluem.",
+    "sobre.bio2": "na Fatec, busco ter bom desempenho, aprender além da grade curricular e desenvolver projetos relevantes em atividades extracurriculares. Tenho interesse em front-end, desenvolvimento full-stack, mobile e ciência de dados. Também busco reconhecimento técnico e experiências internacionais ou remotas, e tenho curiosidade sobre liderança de equipes e empreendedorismo em tecnologia.",
+    "sobre.valores": "valores",
+    "sobre.comunicacao": "comunicação",
+    "sobre.persistencia": "persistência",
+    "sobre.adaptacao": "adaptação",
+    "sobre.trabalho": "individual e em equipe",
+    "sobre.formacao": "formação",
+    "sobre.competencias": "competências técnicas",
+    // menu fullscreen (VM)
+    "menu.titulo": "menu",
+    "menu.navegacao": "navegação",
+    "menu.acoes": "ações",
+    "menu.tema": "tema",
+    "menu.temaClaro": "claro",
+    "menu.temaEscuro": "escuro",
+    "menu.idioma": "idioma",
+    "menu.contato": "contato",
+    "menu.copiarEmail": "copiar e-mail",
+    "menu.fechar": "fechar",
+    // rodapé (Aditya, sem formulário)
+    "footer.cta": "vamos construir algo juntos",
+    "footer.digaOla": "diga olá",
+    "footer.emailCopiado": "e-mail copiado!",
+    "footer.localizacao": "São Paulo, Brasil",
+    "footer.voltarTopo": "voltar ao topo",
+    // comum
+    "comum.cvBaixar": "currículo",
+    "comum.abrir": "abrir",
+  },
+  en: {
+    // navigation
+    "nav.inicio": "home",
+    "nav.projetos": "projects",
+    "nav.sobre": "about",
+    "nav.cv": "resume",
+    // hero
+    "hero.saudacao": "hi, i am",
+    "hero.disponivel": "available for projects",
+    "hero.verProjetos": "view projects",
+    "hero.verCv": "view resume",
+    // filters
+    "filtros.todos": "all",
+    // project cards
+    "projeto.tipo.projeto_academico": "academic project",
+    "projeto.tipo.profissional": "professional project",
+    "projeto.tipo.pessoal": "personal project",
+    "projeto.tipo.atividade_academica": "academic activity",
+    "projeto.verGithub": "view github",
+    "projeto.verDetalhe": "view details",
+    "projeto.verTodos": "view all projects",
+    "projeto.pessoas": "people",
+    "projeto.instituicao": "institution",
+    "projeto.periodo": "period",
+    "projeto.parceiro": "partner / client",
+    "projeto.repositorioOriginal": "original repository",
+    "projeto.repositorioPessoal": "personal copy",
+    "projeto.contribuicoes": "my contributions",
+    "projeto.hardSkills": "technical skills",
+    "projeto.softSkills": "soft skills",
+    "projeto.nivel.basico": "beginner",
+    "projeto.nivel.autonomo": "independent",
+    "projeto.nivel.fluente": "proficient",
+    // project page (case-study template)
+    "projeto.voltar": "← all projects",
+    "projeto.codeSource": "source code",
+    "projeto.demo": "live demo",
+    "projeto.contexto": "problem and solution",
+    "projeto.problema": "problem",
+    "projeto.solucao": "solution",
+    "projeto.resultados": "results",
+    "projeto.stack": "tech stack",
+    "projeto.anterior": "previous",
+    "projeto.proximo": "next",
+    // about
+    "sobre.titulo": "about me",
+    "sobre.bio1": "I'm Kelwin Felipe Rocha Silva, a Multiplatform Software Development (DSM) student at FATEC São José dos Campos – Prof. Jessen Vidal. I enjoy building projects, exploring new technologies, and turning ideas into real applications. I'm also interested in understanding how software products are conceived, built, and evolved.",
+    "sobre.bio2": "At Fatec, I want to perform well, learn beyond the curriculum, and build meaningful projects through extracurricular activities. My interests include front-end, full-stack, mobile development, and data science. I also seek technical recognition and international or remote experience, and I'm curious about team leadership and entrepreneurship in technology.",
+    "sobre.valores": "values",
+    "sobre.comunicacao": "communication",
+    "sobre.persistencia": "persistence",
+    "sobre.adaptacao": "adaptability",
+    "sobre.trabalho": "individual and team work",
+    "sobre.formacao": "education",
+    "sobre.competencias": "technical skills",
+    // fullscreen menu (VM)
+    "menu.titulo": "menu",
+    "menu.navegacao": "navigation",
+    "menu.acoes": "actions",
+    "menu.tema": "theme",
+    "menu.temaClaro": "light",
+    "menu.temaEscuro": "dark",
+    "menu.idioma": "language",
+    "menu.contato": "contact",
+    "menu.copiarEmail": "copy e-mail",
+    "menu.fechar": "close",
+    // footer (Aditya, no form)
+    "footer.cta": "let's build something together",
+    "footer.digaOla": "say hello",
+    "footer.emailCopiado": "e-mail copied!",
+    "footer.localizacao": "São Paulo, Brazil",
+    "footer.voltarTopo": "back to top",
+    // common
+    "comum.cvBaixar": "resume",
+    "comum.abrir": "open",
+  },
+} as const;
+
+export type TranslationKey = keyof (typeof translations)["pt"];
