@@ -210,20 +210,23 @@ export function PaginaProjetoDetail({ projeto }: { projeto: Projeto }) {
           </Bloco>
         ) : null}
 
-        <section className="py-9 sm:py-11">
-          <Separator className="mb-8" />
-          <p className="label-mono mb-4">{`${proximoNumeroBloco()} — ${t("projeto.stack")}`}</p>
-          <div className="flex flex-wrap gap-1.5">
-            {[...projeto.stack].sort((a, b) => a.length - b.length).map((tec) => (
-              <BadgeTecnologia key={tec} nome={tec} />
-            ))}
-          </div>
-        </section>
+        <FadeInUp>
+          <section className="py-9 sm:py-11">
+            <Separator className="mb-8" />
+            <p className="label-mono mb-4">{`${proximoNumeroBloco()} — ${t("projeto.stack")}`}</p>
+            <div className="flex flex-wrap gap-1.5">
+              {[...projeto.stack].sort((a, b) => a.length - b.length).map((tec) => (
+                <BadgeTecnologia key={tec} nome={tec} />
+              ))}
+            </div>
+          </section>
+        </FadeInUp>
 
-        <nav className="flex justify-between gap-4 border-t border-[var(--borda)] py-8" aria-label={t("nav.projetos")}>
+        <FadeInUp>
+        <nav className="flex justify-between gap-4 py-8" aria-label={t("nav.projetos")}>
           {anterior ? (
             <Link to="/projetos/$slug" params={{ slug: anterior.slug }} className="focus-vm block rounded-lg">
-              <SpotlightBorder innerClassName="min-h-16 rounded-lg px-4 py-3">
+              <SpotlightBorder className="bg-transparent" innerClassName="bg-transparent text-nowrap">
                 <span className="label-mono mb-1 flex items-center gap-2">
                   <ArrowLeft className="h-3.5 w-3.5" aria-hidden />
                   {t("projeto.anterior")}
@@ -234,7 +237,7 @@ export function PaginaProjetoDetail({ projeto }: { projeto: Projeto }) {
           ) : <span />}
           {proximo ? (
             <Link to="/projetos/$slug" params={{ slug: proximo.slug }} className="focus-vm block rounded-lg text-right">
-              <SpotlightBorder innerClassName="min-h-16 rounded-lg px-4 py-3">
+              <SpotlightBorder className="bg-transparent" innerClassName="bg-transparent text-nowrap">
                 <span className="label-mono mb-1 flex items-center justify-end gap-2">
                   {t("projeto.proximo")}
                   <ArrowRight className="h-3.5 w-3.5" aria-hidden />
@@ -244,6 +247,7 @@ export function PaginaProjetoDetail({ projeto }: { projeto: Projeto }) {
             </Link>
           ) : null}
         </nav>
+        </FadeInUp>
       </div>
     </main>
   );

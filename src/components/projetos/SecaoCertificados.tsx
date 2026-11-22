@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useI18n } from "@/i18n/I18nContext";
 import { certificados } from "@/data/portfolio";
 import { Secao } from "@/components/layout/Secao";
+import { FadeInUp } from "@/components/motion-primitives/fade-in-up";
 import {
   MorphingDialog,
   MorphingDialogClose,
@@ -19,11 +20,12 @@ export function SecaoCertificados() {
   return (
     <Secao numero="04" titulo={tx({ pt: "certificados", en: "certificates" })}>
       <div className="flex flex-col gap-5">
-        {certificados.map((certificado) => {
+        {certificados.map((certificado, index) => {
           const titulo = tx(certificado.titulo);
           const descricao = tx(certificado.descricao);
           return (
-            <MorphingDialog key={certificado.id} transition={{ type: "spring", stiffness: 260, damping: 24 }}>
+            <FadeInUp key={certificado.id} delay={index * 0.05}>
+            <MorphingDialog transition={{ type: "spring", stiffness: 260, damping: 24 }}>
               <MorphingDialogTrigger
                 className="group w-full overflow-hidden rounded-xl border border-[var(--borda)] bg-[var(--superficie)] transition-colors hover:border-[var(--accent)]/60 flex items-center p-3 gap-5"
                 aria-label={`${tx({ pt: "Ver certificado", en: "View certificate" })}: ${titulo}`}
@@ -74,6 +76,7 @@ export function SecaoCertificados() {
                 </MorphingDialogContent>
               </MorphingDialogContainer>
             </MorphingDialog>
+            </FadeInUp>
           );
         })}
       </div>

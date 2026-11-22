@@ -11,7 +11,10 @@
       content="Portfólio de Kelwin Felipe Rocha Silva, estudante de Desenvolvimento de Software Multiplataforma (DSM) na Fatec, construindo aplicações web full-stack. Disponível para projetos."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Kelwin Felipe Rocha Silva — Desenvolvedor Web Full-Stack" />
+    <meta
+      property="og:title"
+      content="Kelwin Felipe Rocha Silva — Desenvolvedor Web Full-Stack"
+    />
     <meta
       property="og:description"
       content="Portfólio de Kelwin Felipe Rocha Silva, estudante de DSM na Fatec, construindo aplicações web full-stack. Disponível para projetos."
@@ -34,7 +37,10 @@
       (function () {
         try {
           var lang = localStorage.getItem("kelwin-lang") || "pt";
-          document.documentElement.setAttribute("lang", lang === "pt" ? "pt-BR" : "en");
+          document.documentElement.setAttribute(
+            "lang",
+            lang === "pt" ? "pt-BR" : "en",
+          );
         } catch (e) {}
       })();
     </script>

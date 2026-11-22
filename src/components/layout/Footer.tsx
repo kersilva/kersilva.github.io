@@ -7,6 +7,7 @@ import { GithubMarca, LinkedinMarca } from "@/components/ui/Marcas";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { AnimatedUnderlineLink } from "@/components/motion-primitives/animated-underline-link";
+import { FadeInUp } from "@/components/motion-primitives/fade-in-up";
 import { TextMorph } from "@/components/motion-primitives/text-morph";
 import { useI18n } from "@/i18n/I18nContext";
 import { pessoa } from "@/data/portfolio";
@@ -60,6 +61,7 @@ export function Footer() {
         <Separator />
 
         {/* ===== linha 1: CTA + contatos ===== */}
+        <FadeInUp>
         <div className="flex flex-wrap items-end justify-between gap-6 pt-10">
           <div className="w-full max-w-fit">
             <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
@@ -110,9 +112,11 @@ export function Footer() {
             </a>
           </div>
         </div>
+        </FadeInUp>
 
         {/* ===== linha 2: metadados — nome, localização abaixo, relógio, topo ===== */}
         <Separator className="mt-10" />
+        <FadeInUp delay={0.08}>
         <div className="flex flex-wrap items-center justify-between gap-4 py-6">
           <div>
             <p className="label-mono">{pessoa.marcaRodape}</p>
@@ -139,6 +143,7 @@ export function Footer() {
             </AnimatedUnderlineLink>
           </div>
         </div>
+        </FadeInUp>
       </div>
     </footer>
   );

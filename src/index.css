@@ -164,7 +164,7 @@
     @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[var(--accent)]/40 bg-[var(--accent-suave)] text-[var(--accent)] transition-all duration-200;
     transition-timing-function: var(--ease-suave);
   }
-  
+
   .hover-vm:hover .icon-tile,
   .hover-vm:focus-visible .icon-tile {
     @apply border-transparent bg-[var(--accent)] text-white;

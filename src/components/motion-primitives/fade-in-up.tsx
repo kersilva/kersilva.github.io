@@ -1,7 +1,7 @@
-/* Motion Primitives — FadeInUp (vendorado e adaptado aos tokens) */
+/* Entrada suave: opacidade, blur e leve subida. */
 
-import { motion, useInView, useReducedMotion, type MotionProps } from "motion/react";
-import { useRef, type ReactNode } from "react";
+import { motion, type MotionProps } from "motion/react";
+import { type ReactNode } from "react";
 
 interface FadeInUpProps extends MotionProps {
   children: ReactNode;
@@ -16,21 +16,21 @@ export function FadeInUp({
   children,
   delay = 0,
   duration = 0.5,
-  distance = 16,
+  distance = 32,
   once = true,
   className,
   ...motionProps
 }: FadeInUpProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once, margin: "-40px" });
-  const reduzir = useReducedMotion();
+  const entrada = { opacity: 0, y: distance, scale: 0.95, filter: "blur(8px)" };
+  const visivel = { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" };
+  const transicao = { duration, delay, ease: [1, 1, 0.36, 1] as const };
 
   return (
     <motion.div
-      ref={ref}
-      initial={reduzir ? undefined : { opacity: 0, y: distance }}
-      animate={inView ? { opacity: 1, y: 0 } : undefined}
-      transition={{ duration, delay, ease: [0.4, 0, 0.2, 1] }}
+      initial={entrada}
+      whileInView={visivel}
+      viewport={{ once, margin: "-40px" }}
+      transition={transicao}
       className={className}
       {...motionProps}
     >

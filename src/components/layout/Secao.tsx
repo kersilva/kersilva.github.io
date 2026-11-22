@@ -2,6 +2,7 @@
 import type { ReactNode } from "react";
 import { Separator } from "@/components/ui/separator";
 import { FadeInUp } from "@/components/motion-primitives/fade-in-up";
+import { TextEffect } from "@/components/core/text-effect";
 
 /**
  * Seção numerada com kicker monospace e divisória DENTRO dos trilhos
@@ -24,23 +25,45 @@ export function Secao({
     <section className={`py-12 sm:py-16 ${className}`}>
       <div className="container-dossie">
         <Separator className="mb-8 sm:mb-10" />
-        <FadeInUp>
-          <header className="mb-8 sm:mb-10">
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <div className="flex items-center gap-3">
-                <span className="label-mono !text-[var(--accent)]">{`${numero}.`}</span>
-                <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-                  {titulo}
-                </h2>
-              </div>
-              {descricao ? (
-                <span className="label-mono hidden max-w-sm text-right md:block">
-                  {descricao}
-                </span>
-              ) : null}
+        <header className="mb-8 sm:mb-10">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <div className="flex items-center gap-3">
+              <span className="label-mono !text-[var(--accent)]">{`${numero}.`}</span>
+              <TextEffect
+                as="h2"
+                per="char"
+                delay={0.2}
+                preset="slide"
+                variants={{
+                  container: {
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: { staggerChildren: 0.025 },
+                    },
+                  },
+                  item: {
+                    hidden: { opacity: 0, rotateX: 90, y: 40 },
+                    visible: {
+                      opacity: 1,
+                      rotateX: 0,
+                      y: 0,
+                      transition: { duration: 0.3 },
+                    },
+                  },
+                }}
+                className="text-2xl font-semibold tracking-tight sm:text-3xl"
+              >
+                {titulo}
+              </TextEffect>
             </div>
-          </header>
-        </FadeInUp>
+            {descricao ? (
+              <span className="label-mono hidden max-w-sm text-right md:block">
+                {descricao}
+              </span>
+            ) : null}
+          </div>
+        </header>
         {children}
       </div>
     </section>

@@ -12,7 +12,6 @@ import { WordRotate } from "@/components/magicui/word-rotate";
 import { BadgeTecnologia } from "@/components/projetos/BadgeTecnologia";
 import { Button } from "@/components/ui/button";
 import { BorderTrail } from "@/components/motion-primitives/border-trail";
-import { Spotlight } from "@/components/motion-primitives/spotlight";
 import {
   ImageComparison,
   ImageComparisonImage,
@@ -166,27 +165,28 @@ export function PaginaHome() {
       {/* ============ 02. formação: timeline ============ */}
       <Secao numero="02" titulo={t("sobre.formacao")}>
         <ol className="relative">
-          {formacao.map((item) => (
-            <li key={item.titulo} className="relative flex gap-4 pb-8 last:pb-0">
-              {/* marcador da timeline */}
-              <div className="relative flex-1 overflow-hidden rounded-lg border border-[var(--borda)] bg-[var(--superficie)] p-6">
-                <div className="relative z-10">
-                  <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
-                    <span className="label-mono !text-[var(--accent)] order-1 !text-[10px] sm:order-2">
-                      {item.periodo}
-                    </span>
-                    <h3 className="order-2 font-semibold leading-snug sm:order-1">
-                      {item.titulo}
-                    </h3>
+          {formacao.map((item, index) => (
+            <li key={item.titulo} className="relative pb-8 last:pb-0">
+              <FadeInUp delay={index * 0.08}>
+                <div className="relative overflow-hidden rounded-lg border border-[var(--borda)] bg-[var(--superficie)] p-6">
+                  <div className="relative z-10">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+                      <span className="label-mono !text-[var(--accent)] order-1 !text-[10px] sm:order-2">
+                        {item.periodo}
+                      </span>
+                      <h3 className="order-2 font-semibold leading-snug sm:order-1">
+                        {item.titulo}
+                      </h3>
+                    </div>
+                    <p className="mt-0.5 font-mono text-xs text-[var(--texto-muted)]">
+                      {item.instituicao}
+                    </p>
+                    <p className="mt-2 text-base leading-relaxed text-[var(--texto-muted)]">
+                      {tx(item.descricao)}
+                    </p>
                   </div>
-                  <p className="mt-0.5 font-mono text-xs text-[var(--texto-muted)]">
-                    {item.instituicao}
-                  </p>
-                  <p className="mt-2 text-base leading-relaxed text-[var(--texto-muted)]">
-                    {tx(item.descricao)}
-                  </p>
                 </div>
-              </div>
+              </FadeInUp>
             </li>
           ))}
         </ol>
@@ -205,18 +205,17 @@ export function PaginaHome() {
       >
 
         <div className="grid gap-6">
-          {skills.map((categoria) => (
-            <div
-              key={categoria.id}
-              className="grid gap-3 py-2 sm:grid-cols-[200px_1fr] sm:items-center"
-            >
-              <p className="label-mono">{tx(categoria.rotulo)}</p>
-              <div className="flex flex-wrap gap-1.5">
-                {categoria.skills.map((skill) => (
-                  <BadgeTecnologia className="lg:text-sm" key={skill} nome={skill} />
-                ))}
+          {skills.map((categoria, index) => (
+            <FadeInUp key={categoria.id} delay={index * 0.06}>
+              <div className="grid gap-3 py-2 sm:grid-cols-[200px_1fr] sm:items-center">
+                <p className="label-mono">{tx(categoria.rotulo)}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {categoria.skills.map((skill) => (
+                    <BadgeTecnologia className="lg:text-sm" key={skill} nome={skill} />
+                  ))}
+                </div>
               </div>
-            </div>
+            </FadeInUp>
           ))}
         </div>
       </Secao>
@@ -240,15 +239,17 @@ export function PaginaHome() {
           ))}
         </div>
 
-        <div className="mt-8 flex justify-center">
-          <Link
-            to="/projetos"
-            className="focus-vm inline-flex h-10 items-center gap-2 rounded-md border border-[var(--borda)] px-5 font-mono text-xs uppercase tracking-wider transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
-          >
-            {t("projeto.verTodos")}
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
-        </div>
+        <FadeInUp delay={0.12}>
+          <div className="mt-8 flex justify-center">
+            <Link
+              to="/projetos"
+              className="focus-vm inline-flex h-10 items-center gap-2 rounded-md border border-[var(--borda)] px-5 font-mono text-xs uppercase tracking-wider transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            >
+              {t("projeto.verTodos")}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </FadeInUp>
       </Secao>
     </main>
   );
