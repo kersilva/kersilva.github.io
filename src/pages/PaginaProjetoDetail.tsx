@@ -1,14 +1,50 @@
 /* Página individual de projeto — estudo de caso a partir dos dados atuais. */
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, ZoomIn } from "lucide-react";
 import { GithubMarca } from "@/components/ui/Marcas";
 import { Badge } from "@/components/ui/badge";
 import { BadgeTecnologia } from "@/components/projetos/BadgeTecnologia";
 import { Separator } from "@/components/ui/separator";
 import { FadeInUp } from "@/components/motion-primitives/fade-in-up";
 import { SpotlightBorder } from "@/components/motion-primitives/border-spotlight";
+import {
+  MorphingDialog,
+  MorphingDialogClose,
+  MorphingDialogContainer,
+  MorphingDialogContent,
+  MorphingDialogImage,
+  MorphingDialogTrigger,
+} from "@/components/motion-primitives/morphing-dialog";
 import { useI18n } from "@/i18n/I18nContext";
 import { projetos, type Projeto } from "@/data/portfolio";
+
+function ImagemProjetoZoom({ src, alt, className, imageClassName }: { src: string; alt: string; className?: string; imageClassName?: string }) {
+  return (
+    <MorphingDialog transition={{ type: "spring", stiffness: 260, damping: 24 }}>
+      <MorphingDialogTrigger className={`group block overflow-hidden rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)] ${className ?? ""}`} aria-label={`${alt} — ampliar imagem`}>
+        <MorphingDialogImage
+          src={src}
+          alt={alt}
+          className={`block h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02] ${imageClassName ?? ""}`}
+        />
+        <span className="pointer-events-none absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-md border border-white/20 bg-black/65 px-2 py-1 font-mono text-[10px] text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+          <ZoomIn className="h-3.5 w-3.5" aria-hidden />
+          Ampliar
+        </span>
+      </MorphingDialogTrigger>
+      <MorphingDialogContainer>
+        <MorphingDialogContent className="w-[min(96vw,90rem)] overflow-hidden rounded-xl border border-[var(--borda)] bg-[var(--superficie)] p-2 shadow-2xl">
+          <MorphingDialogClose />
+          <MorphingDialogImage
+            src={src}
+            alt={alt}
+            className="mx-auto max-h-[88vh] w-full rounded-lg object-contain"
+          />
+        </MorphingDialogContent>
+      </MorphingDialogContainer>
+    </MorphingDialog>
+  );
+}
 
 function Bloco({
   numero,
@@ -105,10 +141,10 @@ export function PaginaProjetoDetail({ projeto }: { projeto: Projeto }) {
               className="relative flex aspect-[16/9] items-center justify-center overflow-hidden rounded-xl border border-[var(--borda)]"
               style={{ backgroundColor: projeto.corCapa }}
             >
-              <img
+              <ImagemProjetoZoom
                 src={projeto.capa}
                 alt={`${t("nav.projetos")}: ${projeto.nome}`}
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full"
               />
             </div>
           </FadeInUp>
@@ -201,11 +237,11 @@ export function PaginaProjetoDetail({ projeto }: { projeto: Projeto }) {
 
         {projeto.demonstracao ? (
           <Bloco numero={proximoNumeroBloco()} titulo={t("projeto.demo")}>
-            <img
+            <ImagemProjetoZoom
               src={projeto.demonstracao}
               alt={`${t("projeto.demo")}: ${projeto.nome}`}
-              loading="lazy"
-              className="h-auto max-h-[75vh] w-full rounded-xl border border-[var(--borda)] object-contain"
+              className="relative block max-h-[75vh] w-full rounded-xl border border-[var(--borda)] bg-[var(--superficie)]"
+              imageClassName="h-auto max-h-[75vh] object-contain group-hover:scale-100"
             />
           </Bloco>
         ) : null}
