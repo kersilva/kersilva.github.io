@@ -145,7 +145,7 @@ export function PaginaHome() {
                       innerClassName="flex items-center gap-3 px-4 py-3"
                       size={120}
                     >
-                      <span className="icon-tile !h-8 !w-8" aria-hidden>
+                      <span className="icon-tile-blue !h-8 !w-8" aria-hidden>
                         <span className="font-mono text-[10px] font-semibold">
                           {valor.slice(0, 2).toUpperCase()}
                         </span>
@@ -170,13 +170,9 @@ export function PaginaHome() {
             <li key={item.titulo} className="relative flex gap-4 pb-8 last:pb-0">
               {/* marcador da timeline */}
               <div className="relative flex-1 overflow-hidden rounded-lg border border-[var(--borda)] bg-[var(--superficie)] p-6">
-                <Spotlight
-                  className="z-0 from-blue-800 via-blue-600 to-blue-400 opacity-40"
-                  size={260}
-                />
                 <div className="relative z-10">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
-                    <span className="label-mono order-1 !text-[10px] sm:order-2">
+                    <span className="label-mono !text-[var(--accent)] order-1 !text-[10px] sm:order-2">
                       {item.periodo}
                     </span>
                     <h3 className="order-2 font-semibold leading-snug sm:order-1">

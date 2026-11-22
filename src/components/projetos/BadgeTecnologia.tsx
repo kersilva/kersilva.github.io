@@ -35,9 +35,11 @@ const tamanhoGrande = "size-6";
 export function BadgeTecnologia({
   nome,
   className,
+  variant,
 }: {
   nome: string;
   className?: string;
+  variant?: "default" | "accent" | null | undefined
 }) {
   const slug = icones[nome];
   const [logoFalhou, setLogoFalhou] = useState(false);
@@ -54,7 +56,7 @@ export function BadgeTecnologia({
       : tamanhoPadrao;
 
   return (
-    <Badge className={`${className} min-h-6.5`}>
+    <Badge variant={variant} className={`${className} min-h-6.5`}>
       {src && !logoFalhou ? (
         <img
           src={src}

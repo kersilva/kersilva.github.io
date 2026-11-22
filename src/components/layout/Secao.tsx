@@ -28,7 +28,7 @@ export function Secao({
           <header className="mb-8 sm:mb-10">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <div className="flex items-center gap-3">
-                <span className="label-mono">{`${numero}.`}</span>
+                <span className="label-mono !text-[var(--accent)]">{`${numero}.`}</span>
                 <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
                   {titulo}
                 </h2>
